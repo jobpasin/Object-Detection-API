@@ -111,6 +111,7 @@ def draw_outputs(img, outputs, class_names):
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype(font='./data/fonts/futur.ttf',
                               size=(img.size[0] + img.size[1]) // 100)
+    data_log = {}
     for i in range(nums):
         color = colors[int(classes[i])]
         x1y1 = ((np.array(boxes[i][0:2]) * wh).astype(np.int32))
@@ -128,11 +129,12 @@ def draw_outputs(img, outputs, class_names):
                         fill=tuple(color))
         draw.text((x0, y0 - text_size[1]), text, fill='black',
                               font=font)
+        data_log['boxes{}'.format(i)] = {'boxes':[int(x1y1[0]),int(x1y1[1]),int(x2y2[0]),int(x2y2[1])], 'confidence': str(confidence), 'class':class_names[int(classes[i])]}
     rgb_img = img.convert('RGB')
     img_np = np.asarray(rgb_img)
     img = cv2.cvtColor(img_np, cv2.COLOR_BGR2RGB)
 
-    return img
+    return img, data_log
 
 
 def draw_labels(x, y, class_names):
