@@ -3,6 +3,9 @@
 *.tar
 *.avi
 *.tfrecord
+*.json
+*.mp4
+
 
 /checkpoints/*
 /serving/*
@@ -10,6 +13,7 @@
 /Untitled.ipynb
 /output.jpg
 /data/voc2012_raw/
+/simple-object-tracking/
 
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
